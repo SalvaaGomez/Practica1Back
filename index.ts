@@ -57,15 +57,14 @@ const buscarPersonaje = (nombre: string):void => {
         }
     })
 }
-// buscarPersonaje("Bandido")
+// buscarPersonaje("Sabio")
 
 
 //Crear función para crear un array con frase del inventario
 const inventarioConFrases = ():string[] =>  {
 
     return objetos.map((n) => {
-        const frase:string = n.nombre + " (+" + n.poder.toString() + " poder, categoría: " + n.categoria + ")";
-        return frase
+        return n.nombre + " (+" + n.poder.toString() + " poder, categoría: " + n.categoria + ")";
     })
 }
 // const inventario:string[] = inventarioConFrases()
@@ -82,22 +81,19 @@ const agruparObjetosPorCategoria = ():Record<string, number> =>{
     if(c.categoria=="arma"){
         acc.arma += c.poder 
         return {
+            ...acc, 
             arma: acc.arma,
-            herramienta: acc.herramienta,
-            mágico: acc.mágico
         }
     }else if(c.categoria=="herramienta"){
         acc.herramienta += c.poder 
         return {
-            arma: acc.arma,
+            ...acc, 
             herramienta: acc.herramienta,
-            mágico: acc.mágico
         }
     }else if(c.categoria=="mágico"){
         acc.mágico += c.poder 
         return {
-            arma: acc.arma,
-            herramienta: acc.herramienta,
+            ...acc, 
             mágico: acc.mágico
         }
     }
@@ -124,7 +120,7 @@ const main = (): void => {
       listarLugares();
       break;
     case 2:
-      const nombreBuscado = "Sabio"; // Cambia el nombre para probar
+      const nombreBuscado = "test"; // Cambia el nombre para probar
       buscarPersonaje(nombreBuscado);
       break;
     case 3:
